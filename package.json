@@ -1,0 +1,28 @@
+{
+  "name": "runr",
+  "version": "0.1.0",
+  "description": "Runs child processes",
+  "author": "Jakob Mattsson <jakob.mattsson@gmail.com> (jakobmattsson.se)",
+  "main": "./lib/runr.js",
+  "engines": {
+    "node": ">= 0.8 < 0.12"
+  },
+  "scripts": {
+    "pretest": "coffee -co lib src",
+    "prepublish": "coffee -co lib src",
+    "coverage": "jscov src .cov && JSCOV=.cov mocha --compilers coffee:coffee-script --reporter mocha-term-cov-reporter spec/*.coffee",
+    "test": "mocha --compilers coffee:coffee-script spec/*.coffee"
+  },
+  "dependencies": {
+    "phantomjs": "1.8.2-0",
+    "wd": "0.0.31"
+  },
+  "devDependencies": {
+    "bufferstream": "0.5.1",
+    "coffee-script": "1.4.0",
+    "jscov": "0.2.0",
+    "mocha": "1.7.4",
+    "mocha-term-cov-reporter": "0.1.0",
+    "should": "1.2.1"
+  }
+}
