@@ -12,8 +12,8 @@ exports.mongodb = {
 }
 
 exports.up = (name, args, callback) ->
-  runr[name].isRunning (err, isRunning) ->
+  exports[name].isRunning (err, isRunning) ->
     return callback(err) if err?
     return callback() if isRunning
-    runr[name].run(args, callback)
+    exports[name].run(args, callback)
   
