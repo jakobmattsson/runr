@@ -1,5 +1,4 @@
-wd = require 'wd'
-phantomjs = require 'phantomjs'
+http = require 'http'
 util = require 'util'
 {spawn} = require 'child_process'
 
@@ -32,9 +31,21 @@ exports.runSelenium = ({ seleniumPath, out, err }, callback) ->
     callback()
 
 exports.isSeleniumRunning = (callback) ->
-  browser = wd.remote()
-  browser.init { browserName: 'phantomjs' }, (err) ->
-    return callback(null, false) if err?
-    browser.quit (err) ->
-      return callback(err) if err?
-      callback(null, true)
+  req = http.request
+    method: 'GET'
+    hostname: 'localhost'
+    port: 4444
+    path: '/selenium-server/driver/?cmd=testComplete'
+  , (res) ->
+    body = ""
+    res.setEncoding('utf8')
+    res.on 'data', (chunk) -> body += chunk
+    res.on 'end', -> callback(null, body == 'OK')
+
+  req.on 'error', (e) ->
+    if e.code == 'ECONNREFUSED'
+      callback(null, false)
+    else
+      callback(e)
+
+  req.end()

@@ -13,10 +13,6 @@
     "coverage": "jscov src .cov && JSCOV=.cov mocha --compilers coffee:coffee-script --reporter mocha-term-cov-reporter spec/*.coffee",
     "test": "mocha --compilers coffee:coffee-script spec/*.coffee"
   },
-  "dependencies": {
-    "phantomjs": "1.8.2-0",
-    "wd": "0.0.31"
-  },
   "devDependencies": {
     "bufferstream": "0.5.1",
     "coffee-script": "1.4.0",
