@@ -11,7 +11,7 @@ exports.mongodb = {
   isRunning: mongodb.hasLocalMongoDatabase
 }
 
-exports.up = (name args, callback) ->
+exports.up = (name, args, callback) ->
   runr[name].isRunning (err, isRunning) ->
     return callback(err) if err?
     return callback() if isRunning
