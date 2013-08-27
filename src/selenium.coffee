@@ -9,7 +9,7 @@ once = (f) ->
     called = true
     f.apply(this, arguments)
 
-exports.runSelenium = ({ seleniumPath, out, err }, callback) ->
+exports.runSelenium = ({ seleniumPath, keepAlive, out, err }, callback) ->
 
   onceCallback = once(callback)
 
@@ -28,6 +28,8 @@ exports.runSelenium = ({ seleniumPath, out, err }, callback) ->
 
   util.pump(selenium.stdout, out) if out
   util.pump(selenium.stderr, err) if err
+
+  process.on('exit', -> selenium.kill()) if !keepAlive
 
   (callback) ->
     selenium.kill('SIGINT')
