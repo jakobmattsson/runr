@@ -13,7 +13,10 @@ exports.runSelenium = ({ seleniumPath, out, err }, callback) ->
 
   onceCallback = once(callback)
 
-  selenium = spawn('java', ['-jar', seleniumPath])
+  if seleniumPath
+    selenium = spawn('java', ['-jar', seleniumPath])
+  else
+    selenium = spawn('java', ['org.openqa.grid.selenium.GridLauncher', 'main'])
 
   selenium.stdout.on 'data', (data) ->
     if /Started SocketListener/.test(data.toString())
