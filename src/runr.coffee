@@ -24,3 +24,5 @@ exports.up = (name, args, callback) ->
     return setNow(-> callback(err)) if err?
     return setNow(callback) if isRunning
     f = exports[name].run(args, callback)
+
+  result
