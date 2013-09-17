@@ -23,6 +23,8 @@ exports.runSelenium = ({ seleniumPath, keepAlive, out, err }, callback) ->
       onceCallback()
 
   selenium.stderr.on 'data', (data) ->
+    if "Could not find or load main class org.openqa.grid.selenium.GridLauncher" in data
+      onceCallback('Could not find or load main class org.openqa.grid.selenium.GridLauncher'
     if /^execvp\(\)/.test(data)
       onceCallback('Failed to start selenium. Please ensure that java is in your system path')
 
