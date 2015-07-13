@@ -1,9 +1,14 @@
 language: node_js
 node_js:
-  - "0.8"
-  - "0.9"
-  - "0.10"
-  - "0.11"
-branches:
-  only:
-    - master
+- '0.10'
+- '0.12'
+deploy:
+  provider: npm
+  email: jakob.mattsson@gmail.com
+  skip_cleanup: true
+  api_key:
+    secure: WoeZgos060coPJV/XXKnRs/qgrMFqA2pWsRkSZlHC1FQdXee2XCSWlgm9mfWCQxNAkV++MiiWzwcyUZkBvORqBScjyzdRegpVexpW1xRj3cfdFs2Szki1peOuQhabCe+4ffmoAk6NuVoc0yC27d0WGFbbdGpKszK8yAyzuH9jvk=
+  on:
+    tags: true
+    branch: master
+    repo: jakobmattsson/runr
