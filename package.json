@@ -1,6 +1,6 @@
 {
   "name": "runr",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Runs child processes",
   "author": "Jakob Mattsson <jakob.mattsson@gmail.com> (jakobmattsson.se)",
   "main": "./lib/runr.js",
